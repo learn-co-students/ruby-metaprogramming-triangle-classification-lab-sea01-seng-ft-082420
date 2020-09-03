@@ -11,22 +11,17 @@ class Triangle
   end
 
   def kind
-    if self.triangle_inequality? && self.sides_greater_0?
-      true_triangle = "This real triangle is"
-    else
-        raise TriangleError
-    end
+    self.triangle_check
       if self.x == self.y && self.x == self.z
-        puts "#{true_triangle} an equilateral triangle."
+        pp ":equilateral"
       elsif self.x != self.y && self.y != self.z && self.z != self.x
-        puts "#{true_triangle} a scalene triangle."
-      else puts "#{true_triangle} an isosceles triangle."
+        pp ":scalene"
+      else pp ":isosceles"
       end
   end
 
   def angles
     if self.triangle_inequality? && self.sides_greater_0?
-      angles_of_triangle = "The angles are:"
     else
       raise TriangleError
     end
@@ -37,7 +32,14 @@ class Triangle
       radians_opposite_z = Math.acos((self.x**2 + self.y**2 - self.z**2).to_f/(2*self.x*self.y)).round(2)
       opposite_z = (radians_opposite_z * (180/Math::PI)).round(2)
       puts "#{angles_of_triangle}"
-      puts "For the vertex opposite to the side x, the angle is #{opposite_x}, for y, the angle is #{opposite_y}, for z, the angle is #{opposite_z}."
+      puts "For the vertex opposite to the side x, the angle is ~#{opposite_x}, for y, the angle is ~#{opposite_y}, for z, the angle is ~#{opposite_z}."
+  end
+
+  def triangle_check
+    if self.triangle_inequality? && self.sides_greater_0?
+    else
+        raise TriangleError
+    end
   end
 
   def triangle_inequality?
@@ -50,7 +52,7 @@ class Triangle
   
   class TriangleError < StandardError
     def message
-      puts "This is not a real triangle."
+      return "This is not a real triangle."
     end
   end
 end
@@ -60,6 +62,3 @@ isosceles = Triangle.new(10, 10, 4)
 scalen = Triangle.new(10, 8, 4)
 nonexistent1 = Triangle.new(0, 10, 4)
 nonexistent2 = Triangle.new(2, 6, 10)
-
-binding.pry
-0
