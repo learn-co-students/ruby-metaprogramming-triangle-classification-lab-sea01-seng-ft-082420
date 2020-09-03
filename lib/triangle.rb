@@ -11,7 +11,7 @@ class Triangle
   end
 
   def kind
-    if self.triangle_inequality? == true && self.sides_greater_0? == true
+    if self.triangle_inequality? && self.sides_greater_0?
       true_triangle = "This real triangle is"
     else
         raise TriangleError
