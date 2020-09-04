@@ -13,10 +13,10 @@ class Triangle
   def kind
     self.triangle_check
       if self.x == self.y && self.x == self.z
-        pp ":equilateral"
+        p :equilateral
       elsif self.x != self.y && self.y != self.z && self.z != self.x
-        pp ":scalene"
-      else pp ":isosceles"
+        p :scalene
+      else p :isosceles
       end
   end
 
